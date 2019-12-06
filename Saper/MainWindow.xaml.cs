@@ -23,6 +23,22 @@ namespace Saper
         public MainWindow()
         {
             InitializeComponent();
+            this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+
+        }
+
+        private void Button_start_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Exit_button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Topmost = false;
+            Exit_window dialog = new Exit_window();
+            dialog.Owner = this;
+            dialog.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
+            dialog.ShowDialog();
         }
     }
 }
