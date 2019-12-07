@@ -13,7 +13,6 @@
         </Grid.ColumnDefinitions>
         <Label x:Name="name_of_the_game" Background="Black" TextElement.Foreground="Red" Content="САПЕР" Margin="10,40,0,174" TextElement.FontSize="30"  TextBlock.TextAlignment="Center" Grid.ColumnSpan="2" ForceCursor="True" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" RenderTransformOrigin="0.498,1.498" Width="182"/>
         <Button x:Name="button_start" Content="Начать игру" Height="30" TextBlock.FontSize="14" Grid.ColumnSpan="2" Width="122" Click="Button_start_Click"/>
-        <Button x:Name="exit_button" Content="Выйти" Height="30" TextBlock.FontSize="14" Grid.ColumnSpan="2" Width="80" Margin="58,187,54,52" Click="Exit_button_Click"/>
-
+        <Button x:Name="exit_button" HorizontalAlignment="Center" Height="30"  Content="Выйти" TextBlock.FontSize="14" Grid.ColumnSpan="2" Width="80" Margin="60,156,54,27" Click="Exit_button_Click"/>
     </Grid>
 </Window>
