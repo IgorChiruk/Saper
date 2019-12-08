@@ -29,12 +29,17 @@ namespace Saper
 
         private void Button_start_Click(object sender, RoutedEventArgs e)
         {
-
+            select_diff dialog = new select_diff();
+            dialog.Width = this.Width;
+            dialog.Height = this.Height;
+            dialog.Owner = this;
+            dialog.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
+            dialog.ShowDialog();
+            this.Close();
         }
 
         private void Exit_button_Click(object sender, RoutedEventArgs e)
         {
-            this.Topmost = false;
             Exit_window dialog = new Exit_window();
             dialog.Owner = this;
             dialog.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;

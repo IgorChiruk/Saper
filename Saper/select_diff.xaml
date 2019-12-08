@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Saper"
         mc:Ignorable="d"
-        Title="Сапер" Height="300" Width="200" ResizeMode="NoResize" Topmost="True">
+        Title="Сапер" Height="300" Width="200" ResizeMode="NoResize" Topmost="True" WindowStyle="None">
     <Grid>
         <Button x:Name="lite_diff" Content="Легкая" HorizontalAlignment="Left" Margin="63,100,0,0" VerticalAlignment="Top" Width="75" Click="Lite_diff_Click"/>
         <Button x:Name="mid_diff" Content="Средняя" HorizontalAlignment="Left" Margin="63,150,0,0" VerticalAlignment="Top" Width="75" Click="Mid_diff_Click"/>

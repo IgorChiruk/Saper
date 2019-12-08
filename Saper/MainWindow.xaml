@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Saper"
         mc:Ignorable="d"
-        Title="Сапер" Height="300" Width="200" ResizeMode="NoResize" Topmost="True">
+        Title="Сапер" Height="300" Width="200" ResizeMode="NoResize">
     <Grid x:Name="grid_main_window" Background="Black">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="207*"/>

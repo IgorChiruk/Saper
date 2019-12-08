@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="field.cs" />
+    <Compile Include="mine_field.cs" />
     <Compile Include="select_diff.xaml.cs">
       <DependentUpon>select_diff.xaml</DependentUpon>
     </Compile>
