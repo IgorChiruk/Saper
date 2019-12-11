@@ -27,15 +27,14 @@ namespace Saper
 
         }
 
+        public void ChangeContent(ContentControl content)
+        {
+            this.Content = content;
+        }
         private void Button_start_Click(object sender, RoutedEventArgs e)
         {
-            select_diff dialog = new select_diff();
-            dialog.Width = this.Width;
-            dialog.Height = this.Height;
-            dialog.Owner = this;
-            dialog.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
-            dialog.ShowDialog();
-            this.Close();
+            select_diff_window dialog = new select_diff_window();
+            this.Content = dialog;
         }
 
         private void Exit_button_Click(object sender, RoutedEventArgs e)
@@ -45,5 +44,6 @@ namespace Saper
             dialog.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
             dialog.ShowDialog();
         }
+
     }
 }

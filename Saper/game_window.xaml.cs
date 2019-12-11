@@ -15,28 +15,17 @@ using System.Windows.Shapes;
 namespace Saper
 {
     /// <summary>
-    /// Логика взаимодействия для select_diff.xaml
+    /// Логика взаимодействия для game_window.xaml
     /// </summary>
-    public partial class select_diff : Window
+    public partial class game_window : Window
     {
-        public select_diff()
+        public game_window()
         {
             InitializeComponent();
-        }
-
-        private void Lite_diff_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Mid_diff_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Hard_diff_Click(object sender, RoutedEventArgs e)
-        {
-
+            this.Height = 100;
+            this.Width = 100;
+            mine_field game_field = new mine_field(4, 4);
+           // this.Content = game_field;  
         }
     }
 }

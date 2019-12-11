@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Saper">
+    <ImageBrush x:Key="1mine" ImageSource="D:\MyRepos\Saper\Saper\Images\1.bmp" ></ImageBrush>
+    <ImageBrush x:Key="2mine" ImageSource="D:\MyRepos\Saper\Saper\Images\2.bmp" ></ImageBrush>
+    <ImageBrush x:Key="3mine" ImageSource="D:\MyRepos\Saper\Saper\Images\3.bmp" ></ImageBrush>
+    <ImageBrush x:Key="4mine" ImageSource="D:\MyRepos\Saper\Saper\Images\4.bmp" ></ImageBrush>
+    <ImageBrush x:Key="5mine" ImageSource="D:\MyRepos\Saper\Saper\Images\5.bmp" ></ImageBrush>
+    <ImageBrush x:Key="6mine" ImageSource="D:\MyRepos\Saper\Saper\Images\6.bmp" ></ImageBrush>
+    <ImageBrush x:Key="7mine" ImageSource="D:\MyRepos\Saper\Saper\Images\7.bmp" ></ImageBrush>
+    <ImageBrush x:Key="8mine" ImageSource="D:\MyRepos\Saper\Saper\Images\8.bmp" ></ImageBrush>
+    <ImageBrush x:Key="9mine" ImageSource="D:\MyRepos\Saper\Saper\Images\9.bmp" ></ImageBrush>
+    <ImageBrush x:Key="noMine" ImageSource="D:\MyRepos\Saper\Saper\Images\noMine.bmp" ></ImageBrush>
+    <ImageBrush x:Key="mine" ImageSource="D:\MyRepos\Saper\Saper\Images\mine.bmp" ></ImageBrush>
+</ResourceDictionary>
