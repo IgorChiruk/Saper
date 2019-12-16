@@ -15,18 +15,17 @@ namespace Saper
         private int x, y, number_of_mines_arroind;
         private bool isMine, open, isMarked;
 
-        private Brush _1mine = (Brush)Application.Current.FindResource("1mine");
-        private Brush _2mine = (Brush)Application.Current.FindResource("2mine");
-        private Brush _3mine = (Brush)Application.Current.FindResource("3mine");
-        private Brush _4mine = (Brush)Application.Current.FindResource("4mine");
-        private Brush _5mine = (Brush)Application.Current.FindResource("5mine");
-        private Brush _6mine = (Brush)Application.Current.FindResource("6mine");
-        private Brush _7mine = (Brush)Application.Current.FindResource("7mine");
-        private Brush _8mine = (Brush)Application.Current.FindResource("8mine");
-        private Brush _9mine = (Brush)Application.Current.FindResource("9mine");
-
-        private Brush noMine = (Brush)Application.Current.FindResource("noMine");
-        private Brush mine = (Brush)Application.Current.FindResource("mine");
+        private Image _1mine = (Image)Application.Current.FindResource("1mine");
+        private Image _2mine = (Image)Application.Current.FindResource("2mine");
+        private Image _3mine = (Image)Application.Current.FindResource("3mine");
+        private Image _4mine = (Image)Application.Current.FindResource("4mine");
+        private Image _5mine = (Image)Application.Current.FindResource("5mine");
+        private Image _6mine = (Image)Application.Current.FindResource("6mine");
+        private Image _7mine = (Image)Application.Current.FindResource("7mine");
+        private Image _8mine = (Image)Application.Current.FindResource("8mine");
+        private Image _9mine = (Image)Application.Current.FindResource("9mine");
+        private Image noMine = (Image)Application.Current.FindResource("noMine");
+        private Image mine = (Image)Application.Current.FindResource("mine");
 
         public field()
         {
@@ -40,19 +39,82 @@ namespace Saper
             this.Width = 25;
             this.Click += Field_Click;
             this.MouseRightButtonUp += Field_MouseRightButtonUp;
-            this.Background = noMine;
+            this.Content = noMine;
         }
 
         private void Field_MouseRightButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if (isMarked) { this.Background = noMine; }
-            else { this.Background = mine; }
+            //Random rand = new Random();
+            //int temp;
+
+            //temp = (rand.Next(1,11));
+            //switch (temp)
+            //{
+            //    case 1:
+            //        {
+            //            this.Content = _1mine;
+            //            break;
+            //        }
+            //    case 2:
+            //        {
+            //            this.Content = _2mine;
+            //            break;
+            //        }
+            //    case 3:
+            //        {
+            //            this.Content = _3mine;
+            //            break;
+            //        }
+            //    case 4:
+            //        {
+            //            this.Content = _4mine;
+            //            break;
+            //        }
+            //    case 5:
+            //        {
+            //            this.Content = _5mine;
+            //            break;
+            //        }
+            //    case 6:
+            //        {
+            //            this.Content = _6mine;
+            //            break;
+            //        }
+            //    case 7:
+            //        {
+            //            this.Content = _7mine;
+            //            break;
+            //        }
+            //    case 8:
+            //        {
+            //            this.Content = _8mine;
+            //            break;
+            //        }
+            //    case 9:
+            //        {
+            //            this.Content = _9mine;
+            //            break;
+            //        }
+            //    case 10:
+            //        {
+            //            this.Content = mine;
+            //            break;
+            //        }
+            //    case 11:
+            //        {
+            //            this.Content = noMine;
+            //            break;
+            //        }
+            //}
+            if (isMarked) { this.Content = noMine; }
+            if (!isMarked) { this.Content = mine; }
             this.Mark();
+
         }
 
         private void Field_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         public int GetX()
@@ -70,7 +132,7 @@ namespace Saper
             return isMine;
         }
 
-        void SetMine()
+        public void SetMine()
         {
             isMine = true;
         }
@@ -86,22 +148,22 @@ namespace Saper
             return number_of_mines_arroind;
         }
 
-        void setNOM()
+        public void setNOM()
         {
             number_of_mines_arroind++;
         }
 
-        void openField()
+        public void openField()
         {
             open = true;
         }
 
-        void setNumber(int a)
+        public void setNumber(int a)
         {
             number_of_mines_arroind = a;
         }
 
-        bool isEmpty()
+        public bool isEmpty()
         {
             return ((number_of_mines_arroind == 0) && (!isMine));
         }
@@ -121,6 +183,72 @@ namespace Saper
         public bool IsMarked()
         {
             return isMarked;
+        }
+
+        public void Update()
+        {
+            if (isMine) { this.Content = mine; }
+            if (!isMine)
+            {
+                switch (number_of_mines_arroind)
+                {
+                    case 0:
+                        {
+                            this.Content = noMine;
+                            break;
+                        }
+
+                    case 1:
+                        {
+                            this.Content = _1mine;
+                            break;
+                        }
+
+                    case 2:
+                        {
+                            this.Content = _2mine;
+                            break;
+                        }
+
+                    case 3:
+                        {
+                            this.Content = _3mine;
+                            break;
+                        }
+
+                    case 4:
+                        {
+                            this.Content = _4mine;
+                            break;
+                        }
+
+                    case 5:
+                        {
+                            this.Content = _5mine;
+                            break;
+                        }
+
+                    case 6:
+                        {
+                            this.Content = _6mine;
+                            break;
+                        }
+
+                    case 7:
+                        {
+                            this.Content = _7mine;
+                            break;
+                        }
+
+                    case 8:
+                        {
+                            this.Content = _8mine;
+                            break;
+                        }
+                }
+            }
+            
+
         }
     }
 

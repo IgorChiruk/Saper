@@ -25,16 +25,11 @@ namespace Saper
             InitializeComponent();
             this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
-        }
-
-        public void ChangeContent(ContentControl content)
-        {
-            this.Content = content;
-        }
+        }     
         private void Button_start_Click(object sender, RoutedEventArgs e)
         {
-            select_diff_window dialog = new select_diff_window();
-            this.Content = dialog;
+            select_diff_window window = new select_diff_window();
+            this.Content = window;
         }
 
         private void Exit_button_Click(object sender, RoutedEventArgs e)

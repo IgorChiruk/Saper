@@ -10,15 +10,20 @@ namespace Saper
 {
     class mine_field :Grid
     {
+
+        private field[,] fields;
+        private int _row,_col;
         public mine_field(int row, int col)
         {
+            _row = row;
+            _col = col;
             //Ширина
-            this.Width = 25 * col;
+            this.Width = 25 * col+20;
             this.MaxWidth = 25 * col;
             this.MinWidth = 25 * col;
 
             //Высота
-            this.Height = 25 * row;
+            this.Height = 25 * row+45;
             this.MaxHeight = 25 * row;
             this.MinHeight = 25 * row;
 
@@ -34,7 +39,7 @@ namespace Saper
                 this.RowDefinitions.Add(new_row);
             }
 
-            field[,] fields = new field[row,col];
+            fields = new field[row,col];
             for (int i = 0; i < row; i++)
             {
                 for(int j = 0; j < col; j++)
@@ -56,6 +61,18 @@ namespace Saper
                 }
             }
 
+        }
+
+        private void Update()
+        {
+            for (int i = 0; i < _row; i++)
+            {
+                for (int j = 0; j < _col; j++)
+                {
+                    fields[i, j].openField();
+                }
+
+            }
         }
 
     }

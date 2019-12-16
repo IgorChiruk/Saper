@@ -51,14 +51,10 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
+    <Page Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
+    </Page>
     <Compile Include="field.cs" />
-    <Compile Include="game_window.xaml.cs">
-      <DependentUpon>game_window.xaml</DependentUpon>
-    </Compile>
     <Compile Include="mine_field.cs" />
     <Compile Include="select_diff_window.cs" />
     <Page Include="Dictionary.xaml">
@@ -66,10 +62,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Exit_window.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="game_window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

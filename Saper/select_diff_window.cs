@@ -96,20 +96,26 @@ namespace Saper
 
         private void Button_hard_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            mine_field game_field = new mine_field(10, 10);
-            this.Children.Clear();
-            this.Children.Add(game_field);
-            //MainWindow.ChangeContent(game_field);
-        }
+            mine_field game_field = new mine_field(30, 30);
+            App.Current.MainWindow.Height = game_field.Height;
+            App.Current.MainWindow.Width = game_field.Width;
+            App.Current.MainWindow.Content = game_field;
+        }   
 
         private void Button_mid_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            
+            mine_field game_field = new mine_field(20, 20);
+            App.Current.MainWindow.Height = game_field.Height;
+            App.Current.MainWindow.Width = game_field.Width;
+            App.Current.MainWindow.Content = game_field;
         }
 
         private void Button_lite_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            
+            mine_field game_field = new mine_field(10, 10);
+            App.Current.MainWindow.Height = game_field.Height;
+            App.Current.MainWindow.Width = game_field.Width;
+            App.Current.MainWindow.Content = game_field;
         }
     }
 }
