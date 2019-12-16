@@ -12,11 +12,13 @@ namespace Saper
     {
 
         private field[,] fields;
-        private int _row,_col;
-        public mine_field(int row, int col)
+        private int row,col,mines;
+
+        public mine_field(int _row, int _col,int _mines)
         {
-            _row = row;
-            _col = col;
+            row = _row;
+            col = _col;
+            mines = _mines;
             //Ширина
             this.Width = 25 * col+20;
             this.MaxWidth = 25 * col;
@@ -60,16 +62,64 @@ namespace Saper
                     this.Children.Add(fields[i,j]);
                 }
             }
-
+            SetMines();
+            Update();
         }
 
+
+        // Размещение мин и цифр на поле
+        private void SetMines()
+        {
+            Random rand = new Random();
+            int x,y;
+            x = rand.Next(0, row - 1);
+            y = rand.Next(0, col - 1);
+
+            for (int i = 0; i < mines; i++)
+            {
+                while (fields[x,y].IsMine())
+                {
+                    x = rand.Next(0, row - 1);
+                    y = rand.Next(0, col - 1);
+                }
+
+                fields[x,y].SetMine();
+
+                if (((x - 1) >= 0) && ((y - 1) >= 0))
+                    fields[x - 1,y - 1].setNOM();
+                if ((x - 1) >= 0)
+                    fields[x - 1,y].setNOM();
+                if (((x + 1) <=row) && ((y - 1) >= 0))
+                    fields[x + 1,y - 1].setNOM();
+                if ((y - 1) >= 0)
+                    fields[x,y - 1].setNOM();
+                if ((x + 1) <=row)
+                    fields[x + 1,y].setNOM();
+                if (((x - 1) >= 0) && ((y + 1) <= col))
+                    fields[x - 1,y + 1].setNOM();
+                if ((y + 1) <= col)
+                    fields[x,y + 1].setNOM();
+                if (((x + 1) <= row) && ((y + 1) <= col))
+                    fields[x + 1,y + 1].setNOM();
+
+            }
+
+            for (int i = 0; i < row; i++)
+                for (int j = 0; j < col; j++)
+                {
+                    if (fields[i,j].IsMine())
+                        fields[i,j].setNumber(0);
+                }
+        }
+
+        //Обновление поля
         private void Update()
         {
-            for (int i = 0; i < _row; i++)
+            for (int i = 0; i < row; i++)
             {
-                for (int j = 0; j < _col; j++)
+                for (int j = 0; j < col; j++)
                 {
-                    fields[i, j].openField();
+                    fields[i, j].Update();
                 }
 
             }
