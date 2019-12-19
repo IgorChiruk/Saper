@@ -12,4 +12,6 @@
     <Image x:Key="9mine" x:Shared="false" Source="D:\MyRepos\Saper\Saper\Images\9.bmp" ></Image>
     <Image x:Key="noMine" x:Shared ="false"  Source="D:\MyRepos\Saper\Saper\Images\noMine.bmp" ></Image>
     <Image x:Key="mine" x:Shared="false" Source="D:\MyRepos\Saper\Saper\Images\mine.bmp" ></Image>
+    <Image x:Key="opened_field" x:Shared="false" Source="D:\MyRepos\Saper\Saper\Images\opened.bmp" ></Image>
+    <Image x:Key="explode" x:Shared="false" Source="D:\MyRepos\Saper\Saper\Images\explode.bmp" ></Image>
 </ResourceDictionary>

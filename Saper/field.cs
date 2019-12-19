@@ -26,7 +26,8 @@ namespace Saper
         private Image _9mine = (Image)Application.Current.FindResource("9mine");
         private Image noMine = (Image)Application.Current.FindResource("noMine");
         private Image mine = (Image)Application.Current.FindResource("mine");
-
+        private Image opened_field = (Image)Application.Current.FindResource("opened_field");
+        private Image explode = (Image)Application.Current.FindResource("explode");
         public field()
         {
             x = 0;
@@ -37,85 +38,27 @@ namespace Saper
             isMarked = false; //помечена ли поле миной
             this.Height = 25;
             this.Width = 25;
-            this.Click += Field_Click;
+            this.MouseLeftButtonUp += Field_MouseLeftButtonUp;
             this.MouseRightButtonUp += Field_MouseRightButtonUp;
             this.Content = noMine;
         }
 
+        private void Field_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            mine_field.x = this.x;
+            mine_field.y = this.y;
+            this.openField();
+        }
+
         private void Field_MouseRightButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //Random rand = new Random();
-            //int temp;
-
-            //temp = (rand.Next(1,11));
-            //switch (temp)
-            //{
-            //    case 1:
-            //        {
-            //            this.Content = _1mine;
-            //            break;
-            //        }
-            //    case 2:
-            //        {
-            //            this.Content = _2mine;
-            //            break;
-            //        }
-            //    case 3:
-            //        {
-            //            this.Content = _3mine;
-            //            break;
-            //        }
-            //    case 4:
-            //        {
-            //            this.Content = _4mine;
-            //            break;
-            //        }
-            //    case 5:
-            //        {
-            //            this.Content = _5mine;
-            //            break;
-            //        }
-            //    case 6:
-            //        {
-            //            this.Content = _6mine;
-            //            break;
-            //        }
-            //    case 7:
-            //        {
-            //            this.Content = _7mine;
-            //            break;
-            //        }
-            //    case 8:
-            //        {
-            //            this.Content = _8mine;
-            //            break;
-            //        }
-            //    case 9:
-            //        {
-            //            this.Content = _9mine;
-            //            break;
-            //        }
-            //    case 10:
-            //        {
-            //            this.Content = mine;
-            //            break;
-            //        }
-            //    case 11:
-            //        {
-            //            this.Content = noMine;
-            //            break;
-            //        }
-            //}
-            if (isMarked) { this.Content = noMine; }
-            if (!isMarked) { this.Content = mine; }
             this.Mark();
-
+            this.Update();
+            mine_field.x = this.x;
+            mine_field.y = this.y;
         }
 
-        private void Field_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+       
 
         public int GetX()
         {
@@ -187,72 +130,137 @@ namespace Saper
 
         public void Update()
         {
-            if (isMine) { this.Content = mine; }
-            if (!isMine)
+            if (!open & !isMarked) { this.Content = noMine; }
+            if (!open & isMarked) { this.Content = mine; }
+            if (open & isMine) { this.Content = explode; }
+            if (open & !isMine)
             {
-                switch (number_of_mines_arroind)
+                if (number_of_mines_arroind == 0) { this.Content = opened_field; this.IsEnabled = false; }
+                else
                 {
-                    case 0:
-                        {
-                            this.Content = noMine;
-                            break;
-                        }
+                    switch (number_of_mines_arroind)
+                    {
+                        case 1:
+                            {
+                                this.Content = _1mine;
+                                break;
+                            }
 
-                    case 1:
-                        {
-                            this.Content = _1mine;
-                            break;
-                        }
+                        case 2:
+                            {
+                                this.Content = _2mine;
+                                break;
+                            }
 
-                    case 2:
-                        {
-                            this.Content = _2mine;
-                            break;
-                        }
+                        case 3:
+                            {
+                                this.Content = _3mine;
+                                break;
+                            }
 
-                    case 3:
-                        {
-                            this.Content = _3mine;
-                            break;
-                        }
+                        case 4:
+                            {
+                                this.Content = _4mine;
+                                break;
+                            }
 
-                    case 4:
-                        {
-                            this.Content = _4mine;
-                            break;
-                        }
+                        case 5:
+                            {
+                                this.Content = _5mine;
+                                break;
+                            }
 
-                    case 5:
-                        {
-                            this.Content = _5mine;
-                            break;
-                        }
+                        case 6:
+                            {
+                                this.Content = _6mine;
+                                break;
+                            }
 
-                    case 6:
-                        {
-                            this.Content = _6mine;
-                            break;
-                        }
+                        case 7:
+                            {
+                                this.Content = _7mine;
+                                break;
+                            }
 
-                    case 7:
-                        {
-                            this.Content = _7mine;
-                            break;
-                        }
+                        case 8:
+                            {
+                                this.Content = _8mine;
+                                break;
+                            }
 
-                    case 8:
-                        {
-                            this.Content = _8mine;
-                            break;
-                        }
+                    }
                 }
             }
+        }
+
+        //public void Update()
+        //{
+        //    if (isMine) { this.Content = mine; }
+        //    if (!isMine)
+        //    {
+        //        switch (number_of_mines_arroind)
+        //        {
+        //            case 0:
+        //                {
+        //                    this.Content = noMine;
+        //                    break;
+        //                }
+
+        //            case 1:
+        //                {
+        //                    this.Content = _1mine;
+        //                    break;
+        //                }
+
+        //            case 2:
+        //                {
+        //                    this.Content = _2mine;
+        //                    break;
+        //                }
+
+        //            case 3:
+        //                {
+        //                    this.Content = _3mine;
+        //                    break;
+        //                }
+
+        //            case 4:
+        //                {
+        //                    this.Content = _4mine;
+        //                    break;
+        //                }
+
+        //            case 5:
+        //                {
+        //                    this.Content = _5mine;
+        //                    break;
+        //                }
+
+        //            case 6:
+        //                {
+        //                    this.Content = _6mine;
+        //                    break;
+        //                }
+
+        //            case 7:
+        //                {
+        //                    this.Content = _7mine;
+        //                    break;
+        //                }
+
+        //            case 8:
+        //                {
+        //                    this.Content = _8mine;
+        //                    break;
+        //                }
+        //        }
+        //    }
             
 
         }
     }
 
-}
+
 
 
     

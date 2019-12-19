@@ -120,5 +120,11 @@
     <Resource Include="Images\mine.bmp" />
     <Resource Include="Images\noMine.bmp" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\opened.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Explode.bmp" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

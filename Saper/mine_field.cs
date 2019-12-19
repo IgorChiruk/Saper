@@ -10,7 +10,7 @@ namespace Saper
 {
     class mine_field :Grid
     {
-
+        public static int x,y;
         private field[,] fields;
         private int row,col,mines;
 
@@ -29,6 +29,9 @@ namespace Saper
             this.MaxHeight = 25 * row;
             this.MinHeight = 25 * row;
 
+            this.MouseRightButtonUp += Mine_field_MouseRightButtonUp;
+            this.MouseLeftButtonUp += Mine_field_MouseLeftButtonUp;
+
             for(int i = 0; i < col; i++)
             {
                 ColumnDefinition new_col = new ColumnDefinition();
@@ -46,7 +49,7 @@ namespace Saper
             {
                 for(int j = 0; j < col; j++)
                 {
-                    fields[i,j] = new field();
+                    fields[i,j] = new field();             
                     fields[i,j].Margin = new Thickness(0, 0, 0, 0);
                     fields[i, j].SetPosition(i, j);
                 }
@@ -66,6 +69,15 @@ namespace Saper
             Update();
         }
 
+        private void Mine_field_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            
+        }
+
+        private void Mine_field_MouseRightButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            
+        }
 
         // Размещение мин и цифр на поле
         private void SetMines()
