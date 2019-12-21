@@ -38,16 +38,17 @@ namespace Saper
             isMarked = false; //помечена ли поле миной
             this.Height = 25;
             this.Width = 25;
-            this.MouseLeftButtonUp += Field_MouseLeftButtonUp;
+            this.PreviewMouseLeftButtonUp += Field_MouseLeftButtonUp;
             this.MouseRightButtonUp += Field_MouseRightButtonUp;
             this.Content = noMine;
+
         }
+      
 
         private void Field_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             mine_field.x = this.x;
             mine_field.y = this.y;
-            this.openField();
         }
 
         private void Field_MouseRightButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)

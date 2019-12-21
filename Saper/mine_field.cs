@@ -29,8 +29,8 @@ namespace Saper
             this.MaxHeight = 25 * row;
             this.MinHeight = 25 * row;
 
-            this.MouseRightButtonUp += Mine_field_MouseRightButtonUp;
-            this.MouseLeftButtonUp += Mine_field_MouseLeftButtonUp;
+            this.PreviewMouseLeftButtonUp += Mine_field_MouseLeftButtonUp;
+          
 
             for(int i = 0; i < col; i++)
             {
@@ -69,14 +69,11 @@ namespace Saper
             Update();
         }
 
+
+
         private void Mine_field_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            
-        }
-
-        private void Mine_field_MouseRightButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            
+            open(x, y);
         }
 
         // Размещение мин и цифр на поле
@@ -135,6 +132,55 @@ namespace Saper
                 }
 
             }
+        }
+
+        private void open(int _x, int _y)
+        {        
+            if (fields[x, y].IsMine())
+            {
+                //проигрыш
+            }
+
+            else if (fields[x,y].isEmpty())
+            {
+                if (((x - 1) >= 0) && ((y - 1) >= 0))
+                {
+                    open(x - 1, y - 1);
+                }
+
+                if ((x - 1) >= 0)
+                {
+                    open(x - 1, y);
+                }
+                if (((x + 1) <= row) && ((y - 1) >= 0))
+                {
+                    open(x + 1, y - 1);
+                }
+                if ((y - 1) >= 0)
+                {
+                    open(x, y - 1);
+                }
+                if ((x + 1) <= row)
+                {
+                    open(x + 1, y);
+                }
+                if (((x - 1) >= 0) && ((y + 1) <= col))
+                {
+                    open(x - 1, y + 1);
+                }
+                if ((y + 1) <= col)
+                {
+                    open(x, y + 1);
+                }
+                if (((x + 1) <= row) && ((y + 1) <= col))
+                {
+                    open(x + 1, y + 1);
+                }
+            }
+            else { fields[x,y].openField(); }
+
+            fields[_x, _y].Update();
+            
         }
 
     }
