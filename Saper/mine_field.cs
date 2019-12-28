@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Saper
 {
@@ -29,7 +30,7 @@ namespace Saper
             this.MaxHeight = 25 * row;
             this.MinHeight = 25 * row;
 
-            this.PreviewMouseLeftButtonUp += Mine_field_MouseLeftButtonUp;
+            this.MouseLeftButtonUp += Mine_field_MouseLeftButtonUp;
           
 
             for(int i = 0; i < col; i++)
@@ -65,6 +66,9 @@ namespace Saper
                     this.Children.Add(fields[i,j]);
                 }
             }
+
+            this.AddHandler(Grid.MouseLeftButtonUpEvent, new MouseButtonEventHandler(Mine_field_MouseLeftButtonUp), true);
+
             SetMines();
             Update();
         }
@@ -73,7 +77,7 @@ namespace Saper
 
         private void Mine_field_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            open(x, y);
+            if(x!=-1 & y != -1) { open(x, y); }     
         }
 
         // Размещение мин и цифр на поле
@@ -136,51 +140,99 @@ namespace Saper
 
         private void open(int _x, int _y)
         {        
-            if (fields[x, y].IsMine())
+            if (fields[_x, _y].IsMine())
             {
+
+                for (int i = 0; i < row; i++)
+                    for (int j = 0; j < col; j++)
+                    {
+                        fields[i, j].Show();
+                    }
                 //проигрыш
+                Lose_window window = new Lose_window();
+                window.Owner = App.Current.MainWindow;
+                window.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
+                window.ShowDialog();                         
             }
 
-            else if (fields[x,y].isEmpty())
+            else if (fields[_x,_y].isEmpty())
             {
-                if (((x - 1) >= 0) && ((y - 1) >= 0))
+                fields[_x, _y].openField();
+
+                if (((_x - 1) >= 0) && ((_y - 1) >= 0))
                 {
-                    open(x - 1, y - 1);
+                    if (!fields[_x-1, _y-1].isOpened())
+                    { open(_x - 1, _y - 1); }
                 }
 
-                if ((x - 1) >= 0)
+                if ((_x - 1) >= 0)
                 {
-                    open(x - 1, y);
+                    if (!fields[_x - 1, _y].isOpened())
+                    { open(_x - 1, _y); }
                 }
-                if (((x + 1) <= row) && ((y - 1) >= 0))
+
+                if (((_x + 1) < row) && ((_y - 1) >= 0))
                 {
-                    open(x + 1, y - 1);
+                    if (!fields[_x+1, _y-1].isOpened())
+                    { open(_x + 1, _y - 1); }
                 }
-                if ((y - 1) >= 0)
+
+                if ((_y - 1) >= 0)
                 {
-                    open(x, y - 1);
+                    if (!fields[_x, _y - 1].isOpened())
+                    { open(_x, _y - 1); }
                 }
-                if ((x + 1) <= row)
+
+                if ((_x + 1) < row)
                 {
-                    open(x + 1, y);
+                    if (!fields[_x + 1, _y].isOpened())
+                    { open(_x + 1, _y); }
                 }
-                if (((x - 1) >= 0) && ((y + 1) <= col))
+
+                if (((_x - 1) >= 0) && ((_y + 1) < col))
                 {
-                    open(x - 1, y + 1);
+                    if (!fields[_x - 1, _y + 1].isOpened())
+                    { open(_x - 1, _y + 1); }
                 }
-                if ((y + 1) <= col)
+
+                if ((_y + 1) < col)
                 {
-                    open(x, y + 1);
+                    if (!fields[_x, _y + 1].isOpened())
+                    { open(_x, _y + 1); }
                 }
-                if (((x + 1) <= row) && ((y + 1) <= col))
+
+                if (((_x + 1) < row) && ((_y + 1) < col))
                 {
-                    open(x + 1, y + 1);
+                    if (!fields[_x + 1, _y + 1].isOpened())
+                    { open(_x + 1, _y + 1); }
                 }
             }
-            else { fields[x,y].openField(); }
+            else { fields[_x,_y].openField(); }
 
             fields[_x, _y].Update();
-            
+            Win();
+        }
+
+
+        //выйгрыш
+        private void Win()
+        {
+            int count=0;
+            for (int i = 0; i < row; i++)
+                for (int j = 0; j < col; j++)
+                {
+                    if (!fields[i, j].isOpened())
+                    {
+                        count++;
+                    }                       
+                }
+            if (count == this.mines)
+            {
+                Win_window window = new Win_window();
+                window.Owner = App.Current.MainWindow;
+                window.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
+                window.ShowDialog();
+            }
         }
 
     }

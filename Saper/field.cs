@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Input;
 
 namespace Saper
 {
@@ -28,6 +29,8 @@ namespace Saper
         private Image mine = (Image)Application.Current.FindResource("mine");
         private Image opened_field = (Image)Application.Current.FindResource("opened_field");
         private Image explode = (Image)Application.Current.FindResource("explode");
+
+
         public field()
         {
             x = 0;
@@ -38,28 +41,33 @@ namespace Saper
             isMarked = false; //помечена ли поле миной
             this.Height = 25;
             this.Width = 25;
-            this.PreviewMouseLeftButtonUp += Field_MouseLeftButtonUp;
+            this.MouseLeftButtonUp += Field_MouseLeftButtonUp;
             this.MouseRightButtonUp += Field_MouseRightButtonUp;
             this.Content = noMine;
-
+            this.AddHandler(Button.MouseLeftButtonUpEvent, new MouseButtonEventHandler(Field_MouseLeftButtonUp), true);
         }
-      
-
         private void Field_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            mine_field.x = this.x;
-            mine_field.y = this.y;
+            if (this.isMarked)
+            {
+                mine_field.x = -1;
+                mine_field.y = -1;
+            }
+            else
+            {
+                mine_field.x = this.x;
+                mine_field.y = this.y;
+            }
+
         }
 
         private void Field_MouseRightButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             this.Mark();
             this.Update();
-            mine_field.x = this.x;
-            mine_field.y = this.y;
         }
 
-       
+
 
         public int GetX()
         {
@@ -122,7 +130,7 @@ namespace Saper
         {
             if (isMarked) { this.isMarked = false; }
             else { this.isMarked = true; }
-            
+
         }
         public bool IsMarked()
         {
@@ -194,72 +202,73 @@ namespace Saper
             }
         }
 
-        //public void Update()
-        //{
-        //    if (isMine) { this.Content = mine; }
-        //    if (!isMine)
-        //    {
-        //        switch (number_of_mines_arroind)
-        //        {
-        //            case 0:
-        //                {
-        //                    this.Content = noMine;
-        //                    break;
-        //                }
+        public void Show()
+        {
+            if (isMine) { this.Content = explode; }
+            if (!isMine)
+            {
+                switch (number_of_mines_arroind)
+                {
+                    case 0:
+                        {
+                            this.Content = opened_field;
+                            break;
+                        }
 
-        //            case 1:
-        //                {
-        //                    this.Content = _1mine;
-        //                    break;
-        //                }
+                    case 1:
+                        {
+                            this.Content = _1mine;
+                            break;
+                        }
 
-        //            case 2:
-        //                {
-        //                    this.Content = _2mine;
-        //                    break;
-        //                }
+                    case 2:
+                        {
+                            this.Content = _2mine;
+                            break;
+                        }
 
-        //            case 3:
-        //                {
-        //                    this.Content = _3mine;
-        //                    break;
-        //                }
+                    case 3:
+                        {
+                            this.Content = _3mine;
+                            break;
+                        }
 
-        //            case 4:
-        //                {
-        //                    this.Content = _4mine;
-        //                    break;
-        //                }
+                    case 4:
+                        {
+                            this.Content = _4mine;
+                            break;
+                        }
 
-        //            case 5:
-        //                {
-        //                    this.Content = _5mine;
-        //                    break;
-        //                }
+                    case 5:
+                        {
+                            this.Content = _5mine;
+                            break;
+                        }
 
-        //            case 6:
-        //                {
-        //                    this.Content = _6mine;
-        //                    break;
-        //                }
+                    case 6:
+                        {
+                            this.Content = _6mine;
+                            break;
+                        }
 
-        //            case 7:
-        //                {
-        //                    this.Content = _7mine;
-        //                    break;
-        //                }
+                    case 7:
+                        {
+                            this.Content = _7mine;
+                            break;
+                        }
 
-        //            case 8:
-        //                {
-        //                    this.Content = _8mine;
-        //                    break;
-        //                }
-        //        }
-        //    }
-            
-
+                    case 8:
+                        {
+                            this.Content = _8mine;
+                            break;
+                        }
+                }
+            }
         }
+
+
     }
+}
 
 
 

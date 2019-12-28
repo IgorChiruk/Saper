@@ -26,7 +26,7 @@ namespace Saper
 
         private void button_yes_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            App.Current.Shutdown();
         }
 
         private void button_no_Click(object sender, RoutedEventArgs e)

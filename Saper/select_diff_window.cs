@@ -10,7 +10,7 @@ namespace Saper
     class select_diff_window :Grid
     {
         public select_diff_window()
-        {
+        {        
             this.Height = 300;
             this.MaxHeight = 300;
             this.MinHeight = 300;
@@ -96,17 +96,25 @@ namespace Saper
 
         private void Button_hard_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            mine_field game_field = new mine_field(25, 35 ,60);
+            mine_field game_field = new mine_field(25, 35 ,120);
             App.Current.MainWindow.Height = game_field.Height;
+            App.Current.MainWindow.MaxHeight = game_field.Height;
+            App.Current.MainWindow.MinHeight = game_field.Height;
             App.Current.MainWindow.Width = game_field.Width;
+            App.Current.MainWindow.MaxWidth = game_field.Width;
+            App.Current.MainWindow.MinWidth = game_field.Width;
             App.Current.MainWindow.Content = game_field;
         }   
 
         private void Button_mid_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            mine_field game_field = new mine_field(20, 20, 40);
+            mine_field game_field = new mine_field(20, 20, 50);
             App.Current.MainWindow.Height = game_field.Height;
+            App.Current.MainWindow.MaxHeight = game_field.Height;
+            App.Current.MainWindow.MinHeight = game_field.Height;
             App.Current.MainWindow.Width = game_field.Width;
+            App.Current.MainWindow.MaxWidth = game_field.Width;
+            App.Current.MainWindow.MinWidth = game_field.Width;
             App.Current.MainWindow.Content = game_field;
         }
 
@@ -114,7 +122,11 @@ namespace Saper
         {
             mine_field game_field = new mine_field(10, 10, 10);
             App.Current.MainWindow.Height = game_field.Height;
+            App.Current.MainWindow.MaxHeight = game_field.Height;
+            App.Current.MainWindow.MinHeight = game_field.Height;
             App.Current.MainWindow.Width = game_field.Width;
+            App.Current.MainWindow.MaxWidth = game_field.Width;
+            App.Current.MainWindow.MinWidth = game_field.Width;
             App.Current.MainWindow.Content = game_field;
         }
     }
